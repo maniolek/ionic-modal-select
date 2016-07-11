@@ -42,7 +42,8 @@
 						searchProperties:'=',
 						onSelect: "&",
 						onSearch: "&",
-						onReset: "&"
+						onReset: "&",
+						onClose: "&"
 					},
 					link: function (scope, iElement, iAttrs, ngModelController, transclude) {
 
@@ -287,6 +288,9 @@
 						scope.closeModal = function(){
 							scope.modal.hide().then(function(){
 								scope.showList = false;
+								if (scope.onClose && angular.isFunction(scope.onClose)) {
+									scope.onClose();
+								}
 							});
 						};
 
